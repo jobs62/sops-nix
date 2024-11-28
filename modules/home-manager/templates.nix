@@ -102,7 +102,7 @@ in
     lib.mkIf (hmConfig.sops.templates != { }) {
       sops.placeholder = mapAttrs (
         name: _: mkDefault "<SOPS:${builtins.hashString "sha256" name}:PLACEHOLDER>"
-      ) config.sops.secrets;
+      ) hmConfig.sops.secrets;
     }
   );
 }
