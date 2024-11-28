@@ -99,7 +99,7 @@ in
   };
 
   config = lib.optionalAttrs (options ? sops.secrets) (
-    lib.mkIf (config.sops.templates != { }) {
+    lib.mkIf (hmConfig.sops.templates != { }) {
       sops.placeholder = mapAttrs (
         name: _: mkDefault "<SOPS:${builtins.hashString "sha256" name}:PLACEHOLDER>"
       ) config.sops.secrets;
